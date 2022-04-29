@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Center</title>
+</head>
+<script>
+    class SportCenter {
+        constructor(namaSportCenter, kapasitas, owner, alamat, phone){
+            this.namaSportCenter = namaSportCenter;
+            this.kapasitas = kapasitas;
+            this.owner = owner;
+            this.alamat = alamat;
+            this.phone = phone;
+        }
+        
+        /*setSportCenter(namaSportCenter, kapasitas, owner, alamat, phone){
+            this.namaSportCenter = namaSportCenter;
+            this.kapasitas = kapasitas;
+            this.owner = owner;
+            this.phone = phone;
+            this.alamat = alamat;
+        }*/
+
+        getSportCenter(){
+            console.log("Sport Center: ", this.namaSportCenter, "\nKapasitas: ", this.kapasitas, "\nOwner: ", this.owner, "\nPhone: ", this.phone, "\nAlamat: ", this.alamat);
+        }
+    }
+
+    class Fasilitas {
+        constructor(fasilitas, keterangan){
+            this.sportCenter = new SportCenter();
+            this.fasilitas = fasilitas;
+            this.keterangan = keterangan;
+        }
+
+        setFasilitas(fasilitas, keterangan){
+            this.fasilitas = fasilitas;
+            this.keterangan = keterangan;
+        }
+
+        getFasilitas(){
+            console.log("Fasilitas: " + this.fasilitas, "\nKeterangan: " + this.keterangan)
+        }
+    }
+
+    class DetailSewa {
+        constructor(kodeSewa, user, tanggal){
+            this.sportCenter = new SportCenter();
+            this.kodeSewa = kodeSewa;
+            this.user = user;
+            this.tanggal = tanggal;
+        }
+
+        getDetailSewa(){
+            console.log("Detail Sewa\nKode Sewa: ", this.kodeSewa,  "\nTanggal: ", this.tanggal)
+        }
+    }
+
+    class User{
+        constructor(nama, username, password){
+            this.nama = nama;
+            this.username = username;
+            this.password = password;
+        }
+
+        login(username, password){
+            if(username == "akbar" && password == "pass") {
+                console.log("Login Berhasil")
+            } else {
+                console.log("Login Gagal")
+            }
+        }
+
+        register(nama, username, password){
+            console.log("Register Berhasil \n", name, username, password)
+        }
+        
+    }
+
+    class Admin extends User {
+
+        constructor(nama, status){
+            super(nama)
+            this.status = status;
+        }
+
+        ubahStatus(status){
+            this.status = status;
+        }
+
+        getStatus(){
+            console.log("Username : ", this.nama, "\nStatus : ", this.status)
+        }
+    }
+
+    class NonAdmin extends User {
+
+        constructor(nama, status, email){
+            super(nama)
+            this.status = status;
+            this.email = email;
+        }
+
+        ubahStatus(status){
+            this.status = status;
+        }
+
+        getStatus(){
+            console.log("Username : ", this.nama, "\nStatus : ", this.status)
+        }
+    }
+
+    class Penyewa extends NonAdmin{
+
+        constructor(nama, email, status, jumlah){
+            super(nama, email, status)
+            this.jumlah = jumlah;
+        }
+
+        setJumlah(jumlah){
+            this.jumlah = jumlah;
+        }
+
+        getJumlah(){
+            console.log("Jumlah Penyewa: ", this.jumlah, "\n Detail Penyewa: ", this.nama, " / ", this.email, " / ", this.status)
+        }
+    }
+
+    class Pemilik extends NonAdmin{
+
+        constructor(nama, email, status, norek){
+            super(nama, email, status)
+            this.norek = norek;
+        }
+
+        setNorek(norek){
+            this.norek = norek;
+        }
+
+        getNorek(){
+            console.log("Norek: ", this.norek, "\nDetail Owner: ", this.nama, " / ", this.email, " / ", this.status)
+        }
+    }
+
+
+
+    const admin = new Admin("Akbar", "albar", "akbar")
+    admin.login("akbar", "pass");
+    admin.ubahStatus("Admin");
+    admin.getStatus();
+
+    const pemilik = new Pemilik("Ilham", "ilham@gmail.com", "Pemilik", "12102198298");
+    pemilik.setNorek("12102198298");
+    pemilik.getNorek();
+
+    const sportCenter = new SportCenter("Ajudan", "300K", "Akbar", "Surabaya", "901930193")
+    sportCenter.getSportCenter()
+
+    const fasilitas = new Fasilitas("Anduk", "Keterangan")
+    fasilitas.getFasilitas()
+
+    const detailSewa = new DetailSewa("112", "Akbar", "10 Januari 2021")
+    detailSewa.getDetailSewa()
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>
